@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>nooodL — healthy screen time for curious minds</title>
+<link rel="icon" href="assets/nooodl-n-icon.png" />
+<style>
+:root{
+  --cream:#FFF8EA; --paper:#FFFCF5; --ink:#181818; --orange:#E69A17;
+  --green:#2DB67D; --darkgreen:#173C2F; --lilac:#8B7CFF; --coral:#FF6B6B; --blue:#3D7DFF;
+  --soft:#F4EAD7; --muted:#6A655D; --line:rgba(24,24,24,.12);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overflow-x:hidden}
+a{color:inherit;text-decoration:none} button{font:inherit}
+.nav{height:82px;display:flex;align-items:center;justify-content:space-between;padding:0 4vw;position:sticky;top:0;z-index:30;background:rgba(255,248,234,.9);backdrop-filter:blur(18px);border-bottom:1px solid rgba(24,24,24,.06)}
+.nav img{width:132px;height:auto;display:block}.nav-links{display:flex;gap:24px;align-items:center;font-size:14px;font-weight:750}
+.pill{border-radius:999px;padding:12px 18px;background:var(--ink);color:#fff;display:inline-flex;align-items:center;gap:9px;transition:.2s transform}.pill:hover{transform:translateY(-2px)}.secondary{border:1px solid var(--ink);background:transparent;color:var(--ink)}
+.hero{min-height:calc(100vh - 82px);padding:7vh 4vw 6vh;display:grid;grid-template-columns:1.02fr .98fr;gap:5vw;align-items:center;position:relative}
+.hero-brand{width:min(330px,58vw);margin-bottom:30px}.eyebrow{font-size:14px;font-weight:850;letter-spacing:.08em;text-transform:uppercase;color:var(--orange);margin-bottom:18px}
+h1,h2{font-family:"Arial Rounded MT Bold","Trebuchet MS",sans-serif;letter-spacing:-.055em}h1{font-size:clamp(54px,7vw,108px);line-height:.91;margin:0;max-width:9.8ch}h1 .curious{color:var(--orange)}
+.hero-copy p{font-size:clamp(18px,1.55vw,24px);line-height:1.5;max-width:640px;margin:30px 0;color:#34312d}.hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+.phone-stage{position:relative;min-height:650px;display:grid;place-items:center}.phone{width:min(395px,82vw);aspect-ratio:9/16;border-radius:48px;background:#0d0e10;padding:10px;box-shadow:0 30px 80px rgba(25,18,8,.25);transform:rotate(1.8deg);position:relative;z-index:2;overflow:hidden}.phone video{width:100%;height:100%;object-fit:cover;border-radius:38px;background:#111;display:block}
+.phone:after{content:'';position:absolute;inset:10px;border-radius:38px;background:linear-gradient(180deg,rgba(0,0,0,.24),rgba(0,0,0,.03) 34%,rgba(0,0,0,.52));pointer-events:none}.phone-top{position:absolute;z-index:4;left:29px;right:29px;top:28px;display:flex;align-items:center;justify-content:space-between}.phone-top .logo-chip{background:rgba(255,252,245,.92);backdrop-filter:blur(12px);border-radius:999px;padding:8px 12px}.phone-top img{width:91px;display:block}.phone-top .mini{background:rgba(24,24,24,.72);color:#fff;padding:8px 11px;border-radius:999px;font-size:11px;font-weight:800}
+.phone-sheet{position:absolute;z-index:4;left:24px;right:24px;bottom:24px;background:rgba(255,252,245,.95);backdrop-filter:blur(14px);padding:19px;border-radius:24px}.phone-sheet .meta{font-size:11px;font-weight:900;color:var(--orange);text-transform:uppercase;letter-spacing:.06em}.phone-sheet h3{font-size:24px;line-height:1.07;margin:8px 0 12px}.phone-sheet .linkline{display:flex;align-items:center;justify-content:space-between;font-size:13px;color:#625d55}.tiny-path{display:flex;gap:7px;margin-top:11px;flex-wrap:wrap}.tiny-path span{background:#efe5d4;border-radius:999px;padding:7px 9px;font-size:11px;font-weight:750}
+.float-shape{position:absolute;border-radius:50%;z-index:1;animation:float 7s ease-in-out infinite}.s1{width:110px;height:110px;background:var(--lilac);top:8%;right:4%}.s2{width:90px;height:90px;background:var(--green);bottom:10%;left:0;border-radius:24px;animation-delay:-2s}.s3{width:70px;height:70px;background:var(--coral);top:46%;right:-1%;clip-path:polygon(50% 0,61% 35%,100% 38%,70% 60%,80% 100%,50% 76%,20% 100%,30% 60%,0 38%,39% 35%);animation-delay:-4s}@keyframes float{50%{transform:translateY(-18px) rotate(8deg)}}
+.marquee{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--paper);padding:16px 0;font-weight:900;font-size:18px}.marquee-track{display:flex;gap:34px;width:max-content;animation:marquee 25s linear infinite}.marquee span:after{content:'✦';color:var(--orange);margin-left:34px}@keyframes marquee{to{transform:translateX(-50%)}}
+.section{padding:10vh 4vw}.section-kicker{font-weight:900;color:var(--orange);font-size:14px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px}h2{font-size:clamp(42px,5.5vw,80px);line-height:.96;margin:0 0 24px;max-width:12ch}.lede{font-size:clamp(18px,1.45vw,23px);line-height:1.52;max-width:700px;color:#4d4942}
+.connections{background:var(--ink);color:#fff;border-radius:42px;margin:0 2vw;padding:8vh 3vw;overflow:hidden;position:relative}.connections .section-kicker{color:#ffc45d}.connections h2{max-width:11ch}.connections .lede{color:#d9d7d1}.trail{position:relative;min-height:540px;margin-top:55px}.node{position:absolute;min-width:180px;max-width:250px;padding:18px 20px;border-radius:24px;background:#fff;color:var(--ink);font-weight:850;box-shadow:0 16px 40px rgba(0,0,0,.15);transition:.25s transform;z-index:2}.node:hover{transform:translateY(-7px) rotate(-1deg)}.node small{display:block;color:#777;font-weight:600;margin-top:6px}.node.main{left:50%;top:41%;transform:translate(-50%,-50%);background:var(--orange);font-size:22px;padding:26px;min-width:250px}.node.main:hover{transform:translate(-50%,-56%)}.n1{left:5%;top:5%}.n2{right:5%;top:3%}.n3{left:10%;bottom:2%}.n4{right:8%;bottom:6%}.n5{left:40%;top:0}.lines{position:absolute;inset:0;z-index:1;opacity:.75}.lines svg{width:100%;height:100%}.lines line{stroke:#817f78;stroke-width:1.5;stroke-dasharray:7 9}
+.interaction{display:grid;grid-template-columns:.8fr 1.2fr;gap:6vw;align-items:start}.steps{display:grid;gap:12px}.step{padding:22px;border-radius:24px;border:1px solid var(--line);background:rgba(255,255,255,.46);display:grid;grid-template-columns:56px 1fr;gap:16px;align-items:center;transition:.2s}.step:hover{background:#fff;transform:translateX(5px)}.counter{width:56px;height:56px;border-radius:50%;background:var(--orange);display:grid;place-items:center;position:relative}.counter.circle:after{content:'';width:16px;height:16px;border-radius:50%;background:var(--cream)}.counter.square:after{content:'';width:16px;height:16px;border-radius:4px;background:var(--cream)}.counter.triangle:after{content:'';width:20px;height:18px;background:var(--cream);clip-path:polygon(50% 0,100% 100%,0 100%)}.counter.star:after{content:'★';font-size:20px;color:var(--cream)}.step h3{margin:0 0 4px;font-size:20px}.step p{margin:0;color:var(--muted);line-height:1.4}
+.demo-card{position:sticky;top:120px;border-radius:36px;background:#101219;color:#fff;overflow:hidden;min-height:590px;box-shadow:0 30px 90px rgba(0,0,0,.14)}.demo-card video{width:100%;height:340px;object-fit:cover;display:block}.demo-body{padding:28px}.tag{font-size:12px;font-weight:900;background:rgba(255,255,255,.12);border-radius:999px;padding:8px 11px;display:inline-block}.demo-body h3{font-size:34px;margin:18px 0 10px;line-height:1.05}.answer{margin-top:24px;background:#fff;color:var(--ink);border-radius:18px;padding:18px}.answer-label{font-size:13px;color:#777;margin-bottom:8px}.fake-input{border:1px dashed #bbb;border-radius:12px;padding:18px;color:#888}
+.worlds{background:var(--paper)}.cards{display:grid;grid-template-columns:repeat(12,1fr);gap:18px;margin-top:48px}.card{border-radius:30px;overflow:hidden;min-height:360px;position:relative;background:#ddd;isolation:isolate}.card:after{content:'';position:absolute;inset:35% 0 0;background:linear-gradient(transparent,rgba(0,0,0,.82));z-index:1}.card img,.card video{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;transition:.5s transform}.card:hover img,.card:hover video{transform:scale(1.035)}.card-copy{position:absolute;z-index:2;left:24px;right:24px;bottom:24px;color:#fff}.card-copy .meta{font-size:12px;font-weight:850;opacity:.82;text-transform:uppercase;letter-spacing:.06em}.card-copy h3{font-size:clamp(24px,2.1vw,36px);line-height:1.05;margin:8px 0 0}.c1{grid-column:span 7;min-height:530px}.c2{grid-column:span 5;min-height:530px}.c3,.c4,.c5{grid-column:span 4}
+.parents{background:var(--darkgreen);color:#fff;border-radius:42px;margin:2vw;padding:8vh 4vw}.parents-grid{display:grid;grid-template-columns:.88fr 1.12fr;gap:6vw;align-items:center}.parents .section-kicker{color:#8EE0BA}.parents h2{max-width:9ch}.parents .lede{color:#d2e5dd}.parent-notes{display:grid;gap:12px;margin-top:34px}.parent-note{display:grid;grid-template-columns:40px 1fr;gap:14px;align-items:start}.parent-note b{display:block;margin-bottom:4px}.parent-note span{color:#c5d8d0;line-height:1.45}.parent-icon{width:40px;height:40px;border-radius:13px;background:rgba(255,255,255,.1);display:grid;place-items:center}
+.dashboard{background:#fff;color:var(--ink);border-radius:34px;padding:26px;box-shadow:0 26px 70px rgba(0,0,0,.2)}.dash-head{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #eee;padding-bottom:18px}.dash-logo{width:112px}.dash-badge{font-size:11px;font-weight:850;background:#FFF0C6;padding:8px 10px;border-radius:999px}.dash-title{font-size:26px;font-weight:850;margin:24px 0 6px}.dash-sub{color:#777;font-size:14px}.interest{margin-top:22px;display:grid;gap:14px}.interest-row{display:grid;grid-template-columns:145px 1fr 68px;gap:12px;align-items:center;font-size:13px}.bar{height:12px;border-radius:999px;background:#eee;overflow:hidden}.bar i{display:block;height:100%;border-radius:999px}.bar .g{width:86%;background:var(--green)}.bar .o{width:72%;background:var(--orange)}.bar .b{width:58%;background:var(--blue)}.bar .p{width:44%;background:var(--lilac)}.signal{font-size:11px;color:#777;text-align:right}.next-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:24px}.next-card{background:#F8F4EB;border-radius:18px;padding:15px;min-height:118px}.next-card .tiny{font-size:10px;color:#8c8378;text-transform:uppercase;font-weight:900;letter-spacing:.04em}.next-card b{display:block;margin-top:8px;line-height:1.25}.next-card span{display:block;margin-top:6px;font-size:12px;color:#706a62;line-height:1.35}
+.values{padding:12vh 4vw;text-align:center;background:var(--orange);position:relative;overflow:hidden}.values h2{max-width:10ch;margin:0 auto}.values p{font-size:21px;max-width:760px;margin:28px auto 0;line-height:1.5}.value-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:1120px;margin:42px auto 34px;text-align:left}.value{background:rgba(255,255,255,.72);padding:24px;border-radius:26px}.value .shape{width:42px;height:42px;background:var(--ink);border-radius:50%;margin-bottom:28px;position:relative}.value:nth-child(2) .shape:after{content:'';position:absolute;width:13px;height:13px;background:var(--orange);border-radius:3px;left:50%;top:50%;transform:translate(-50%,-50%)}.value:nth-child(3) .shape:after{content:'';position:absolute;width:14px;height:14px;background:var(--orange);border-radius:50%;left:50%;top:50%;transform:translate(-50%,-50%)}.value:nth-child(4) .shape{border-radius:12px}.value h3{font-size:20px;margin:0 0 8px}.value p{font-size:14px;margin:0;line-height:1.45}.values .pill{margin-top:6px;background:var(--ink)}
+.offscreen{display:grid;grid-template-columns:1fr 1fr;gap:6vw;align-items:center}.experiment{background:linear-gradient(145deg,#eef7ff,#fff6d7);border-radius:40px;padding:46px;min-height:520px;position:relative;overflow:hidden}.rainbow{height:240px;width:420px;max-width:92%;border:28px solid transparent;border-top-color:#ff6b6b;border-radius:50%;position:absolute;left:50%;bottom:-60px;transform:translateX(-50%)}.rainbow:before,.rainbow:after{content:'';position:absolute;border:28px solid transparent;border-top-color:#E69A17;border-radius:50%;inset:-50px}.rainbow:after{inset:-100px;border-top-color:#8B7CFF}.experiment h3{font-size:38px;line-height:1.03;margin:0;max-width:10ch;position:relative;z-index:2}.experiment p{font-size:18px;max-width:30ch;position:relative;z-index:2}
+.cta{margin:0 2vw 2vw;border-radius:42px;background:#151515;color:#fff;padding:9vh 4vw;text-align:center}.cta h2{margin:0 auto 20px;max-width:11ch}.cta p{margin:0 auto 30px;max-width:680px;color:#dbd8d0;font-size:20px;line-height:1.5}.cta .pill{background:var(--orange);color:var(--ink)}
+footer{padding:32px 4vw 46px;display:flex;align-items:center;justify-content:space-between;color:#6d675e;font-size:13px}footer img{width:105px}
+@media(max-width:980px){.nav-links a:not(.pill){display:none}.hero{grid-template-columns:1fr;padding-top:5vh}.phone-stage{min-height:600px}.interaction,.offscreen,.parents-grid{grid-template-columns:1fr}.demo-card{position:relative;top:auto}.connections{margin:0;border-radius:0}.trail{min-height:650px}.node{max-width:180px;min-width:140px;font-size:13px}.node.main{min-width:200px}.cards{grid-template-columns:1fr}.c1,.c2,.c3,.c4,.c5{grid-column:auto;min-height:410px}.parents{margin:0;border-radius:0}.value-grid{grid-template-columns:1fr 1fr}.cta{margin:0;border-radius:0}.next-steps{grid-template-columns:1fr}.interest-row{grid-template-columns:120px 1fr 60px}footer{flex-direction:column;gap:14px;align-items:flex-start}}
+@media(max-width:560px){.value-grid{grid-template-columns:1fr}.hero-brand{width:230px}.phone-stage{min-height:540px}.phone{width:310px}.trail{min-height:720px}.n5{left:22%;top:0}.n1{left:0;top:18%}.n2{right:0;top:18%}.n3{left:0;bottom:4%}.n4{right:0;bottom:4%}}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a href="#top"><img src="assets/nooodl-wordmark-transparent.png" alt="nooodL" /></a>
+  <div class="nav-links"><a href="#how">How it works</a><a href="#explore">Explore</a><a href="#parents">For parents</a><a href="learning.html">What we believe</a><a class="pill" href="#join">Join the pilot <span>↗</span></a></div>
+</nav>
+
+<main id="top">
+<section class="hero">
+  <div class="hero-copy">
+    <img class="hero-brand" src="assets/nooodl-wordmark-transparent.png" alt="nooodL" />
+    <div class="eyebrow">Healthy screen time for curious minds</div>
+    <h1>Know the world you’re <span class="curious">growing into.</span></h1>
+    <p>nooodL starts with things young people already see — phones, airports, food, money, maps — and connects them to the ideas they meet in school and the world they’re getting ready to enter.</p>
+    <div class="hero-actions"><a href="#how" class="pill">See how it works <span>→</span></a><a href="#parents" class="pill secondary">For parents</a></div>
+  </div>
+  <div class="phone-stage">
+    <div class="float-shape s1"></div><div class="float-shape s2"></div><div class="float-shape s3"></div>
+    <div class="phone">
+      <video src="assets/touchscreen.mp4" autoplay muted loop playsinline></video>
+      <div class="phone-top"><div class="logo-chip"><img src="assets/nooodl-wordmark-transparent.png" alt="nooodL"></div><div class="mini">2 min curiosity</div></div>
+      <div class="phone-sheet"><div class="meta">Something you use every day</div><h3>Your phone knows where you touched. How?</h3><div class="linkline"><span>Look closer → connect the idea</span><b>↗</b></div><div class="tiny-path"><span>Physics</span><span>Engineering</span><span>Everyday life</span></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee"><div class="marquee-track"><span>touchscreens</span><span>airports</span><span>money</span><span>GPS</span><span>food</span><span>design</span><span>history</span><span>biology</span><span>touchscreens</span><span>airports</span><span>money</span><span>GPS</span><span>food</span><span>design</span><span>history</span><span>biology</span></div></div>
+
+<section class="section" id="how">
+  <div class="section-kicker">Learning starts with noticing</div>
+  <h2>See something. Ask why. Connect the dots.</h2>
+  <p class="lede">The ideas in textbooks are already all around us. nooodL helps learners recognise them in the world — so physics shows up in a touchscreen, economics in a phone price, mathematics in GPS, and history in the objects we use every day.</p>
+</section>
+
+<section class="connections">
+  <div class="section-kicker">A nooodL curiosity map</div>
+  <h2>From everyday life to the ideas behind it.</h2>
+  <p class="lede">Start with something familiar. Then see the subjects, systems and stories that make it work. The goal isn’t more content — it’s a richer picture of the world.</p>
+  <div class="trail">
+    <div class="lines"><svg viewBox="0 0 1000 520" preserveAspectRatio="none"><line x1="500" y1="220" x2="130" y2="80"/><line x1="500" y1="220" x2="870" y2="75"/><line x1="500" y1="220" x2="180" y2="450"/><line x1="500" y1="220" x2="840" y2="430"/><line x1="500" y1="220" x2="500" y2="30"/></svg></div>
+    <div class="node main">Your smartphone <small>one object, many ideas</small></div>
+    <div class="node n1">How does a touchscreen know where you tap? <small>Physics + engineering</small></div>
+    <div class="node n2">What does your phone actually cost to make? <small>Economics + supply chains</small></div>
+    <div class="node n3">How does GPS know exactly where you are? <small>Space + mathematics</small></div>
+    <div class="node n4">Why is scrolling so difficult to stop? <small>Psychology + design</small></div>
+    <div class="node n5">Who built the systems behind your phone? <small>History + industry</small></div>
+  </div>
+</section>
+
+<section class="section interaction">
+  <div>
+    <div class="section-kicker">Active, not passive</div>
+    <h2>Don’t just watch it.</h2>
+    <p class="lede">Short experiences ask learners to predict, explain, compare, notice and connect. That little bit of participation is what turns screen time into thinking time.</p>
+    <div class="steps" style="margin-top:34px">
+      <div class="step"><div class="counter circle"></div><div><h3>Notice</h3><p>Begin with something from the world you already know.</p></div></div>
+      <div class="step"><div class="counter square"></div><div><h3>Predict</h3><p>Pause before the answer. What do you think?</p></div></div>
+      <div class="step"><div class="counter triangle"></div><div><h3>Explain</h3><p>Put the idea into your own words.</p></div></div>
+      <div class="step"><div class="counter star"></div><div><h3>Connect</h3><p>Relate it to another subject, situation or experience.</p></div></div>
+    </div>
+  </div>
+  <div class="demo-card">
+    <video src="assets/touchscreen.mp4" autoplay muted loop playsinline></video>
+    <div class="demo-body"><span class="tag">TOUCHSCREEN · PHYSICS IN REAL LIFE</span><h3>How does the phone know <em>where</em> your finger is?</h3><div class="answer"><div class="answer-label">Explain it in your own words</div><div class="fake-input">I think the screen detects…</div></div></div>
+  </div>
+</section>
+
+<section class="section worlds" id="explore">
+  <div class="section-kicker">What you might notice this week</div>
+  <h2>The world is the curriculum.</h2>
+  <p class="lede">Everyday things become entry points into science, economics, history, technology and the systems shaping the future.</p>
+  <div class="cards">
+    <article class="card c1"><video src="assets/phone-cost.mp4" autoplay muted loop playsinline></video><div class="card-copy"><div class="meta">Economics · 4 min</div><h3>What does your smartphone actually cost to make?</h3></div></article>
+    <article class="card c2"><img src="assets/gps.jpg" alt="GPS explainer"><div class="card-copy"><div class="meta">Space + math · 3 min</div><h3>How does GPS calculate your location?</h3></div></article>
+    <article class="card c3"><img src="assets/noodle-shop.jpg" alt="historic industry image"><div class="card-copy"><div class="meta">History · 5 min</div><h3>How old industries shaped the technology in your hand.</h3></div></article>
+    <article class="card c4"><img src="assets/chip-city.jpg" alt="microchip illustration"><div class="card-copy"><div class="meta">Engineering · 4 min</div><h3>Inside a silicon chip’s microscopic city.</h3></div></article>
+    <article class="card c5"><img src="assets/cheap-tech.jpg" alt="technology price graph"><div class="card-copy"><div class="meta">Economics · 4 min</div><h3>How expensive inventions become everyday objects.</h3></div></article>
+  </div>
+</section>
+
+<section class="parents" id="parents">
+  <div class="parents-grid">
+    <div>
+      <div class="section-kicker">For parents</div>
+      <h2>Stay in the loop — for the right reasons.</h2>
+      <p class="lede">Not a report card. A window into what is genuinely catching their attention, so you can help nurture their learning in real time.</p>
+      <div class="parent-notes">
+        <div class="parent-note"><div class="parent-icon">◉</div><div><b>See their emerging interests</b><span>Notice the topics and kinds of questions they keep returning to — across subjects, not just school labels.</span></div></div>
+        <div class="parent-note"><div class="parent-icon">✦</div><div><b>Gift a new experience</b><span>Turn an interest into a book, museum visit, conversation, class, experiment or trip.</span></div></div>
+        <div class="parent-note"><div class="parent-icon">→</div><div><b>Plan the next step</b><span>Get gentle ideas for how to deepen an interest without turning curiosity into pressure.</span></div></div>
+      </div>
+    </div>
+    <div class="dashboard">
+      <div class="dash-head"><img class="dash-logo" src="assets/nooodl-wordmark-transparent.png" alt="nooodL"><span class="dash-badge">Parent view · patterns, not scores</span></div>
+      <div class="dash-title">What seems to be sparking interest</div><div class="dash-sub">A rolling view of the themes showing up in what they watch, ask and explain.</div>
+      <div class="interest">
+        <div class="interest-row"><b>Technology & systems</b><div class="bar"><i class="g"></i></div><div class="signal">strong signal</div></div>
+        <div class="interest-row"><b>Money & markets</b><div class="bar"><i class="o"></i></div><div class="signal">growing</div></div>
+        <div class="interest-row"><b>Space & maps</b><div class="bar"><i class="b"></i></div><div class="signal">growing</div></div>
+        <div class="interest-row"><b>Human behaviour</b><div class="bar"><i class="p"></i></div><div class="signal">emerging</div></div>
+      </div>
+      <div class="next-steps">
+        <div class="next-card"><div class="tiny">Talk about</div><b>Why airports have so many invisible systems</b><span>A question for the next family trip.</span></div>
+        <div class="next-card"><div class="tiny">Gift / try</div><b>A simple electronics build</b><span>Because “how things work” keeps showing up.</span></div>
+        <div class="next-card"><div class="tiny">Explore next</div><b>How money moves around the world</b><span>A natural next connection from phone prices.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="values" id="why">
+  <div class="section-kicker" style="color:#181818">What we value</div>
+  <h2>A screen should open up the world.</h2>
+  <p>We think learning is less about collecting facts and more about noticing, connecting, explaining and becoming more capable in the world around you.</p>
+  <div class="value-grid">
+    <div class="value"><div class="shape"></div><h3>Start with the world</h3><p>Begin with what learners can see, use, question and experience — then connect it to formal ideas.</p></div>
+    <div class="value"><div class="shape"></div><h3>Connections over coverage</h3><p>Subjects make more sense when learners can see how they meet each other in real life.</p></div>
+    <div class="value"><div class="shape"></div><h3>Thinking over consuming</h3><p>Prediction, explanation and reflection matter more than completing another piece of content.</p></div>
+    <div class="value"><div class="shape"></div><h3>Curiosity without compulsion</h3><p>Design for attention and agency — not infinite engagement for its own sake.</p></div>
+  </div>
+  <a class="pill" href="learning.html">Read what we believe about learning & education <span>→</span></a>
+</section>
+
+<section class="section offscreen">
+  <div class="experiment"><h3>Can you make a rainbow yourself?</h3><p>A good screen should sometimes give you a reason to look away from it.</p><div class="rainbow"></div></div>
+  <div><div class="section-kicker">Screen → world</div><h2>Take the question with you.</h2><p class="lede">A curiosity can become an experiment, a conversation, a sketch, a photo, a museum visit or simply something you notice tomorrow. nooodL is not trying to keep you on the screen. It is trying to change what you see after you leave it.</p></div>
+</section>
+
+<section class="cta" id="join">
+  <div class="section-kicker">We’re building the first nooodL pilot</div>
+  <h2>Get ready for the world by getting curious about it.</h2>
+  <p>Short, thoughtful experiences that help young people connect everyday life to bigger ideas — with enough structure to learn and enough freedom to wonder.</p>
+  <a class="pill" href="mailto:hello@nooodl.com?subject=nooodL%20pilot">I’m interested <span>↗</span></a>
+</section>
+</main>
+<footer><img src="assets/nooodl-wordmark-transparent.png" alt="nooodL"><span>Healthy screen time for curious minds.</span><span>Concept prototype · 2026</span></footer>
+<script>
+const videos=[...document.querySelectorAll('video')];
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.play().catch(()=>{});else e.target.pause()}),{threshold:.15});
+videos.forEach(v=>obs.observe(v));
+</script>
+</body>
+</html>
